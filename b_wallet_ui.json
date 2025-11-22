@@ -1,0 +1,469 @@
+{
+  "project": {
+    "name": "B-Wallet",
+    "version": "1.0.0",
+    "description": "Modern Mobile Wallet Application UI",
+    "designSystem": {
+      "colors": {
+        "primary": "#5B4DBC",
+        "secondary": "#FF8C42",
+        "background": "#FFFFFF",
+        "surface": "#F7F9FC",
+        "textPrimary": "#1A1B2D",
+        "textSecondary": "#7E8494",
+        "success": "#00C853",
+        "error": "#D50000",
+        "warning": "#FFD600"
+      },
+      "typography": {
+        "fontFamily": "Poppins, sans-serif",
+        "h1": { "fontSize": 32, "fontWeight": "bold" },
+        "h2": { "fontSize": 24, "fontWeight": "600" },
+        "h3": { "fontSize": 20, "fontWeight": "600" },
+        "body": { "fontSize": 16, "fontWeight": "normal" },
+        "caption": { "fontSize": 12, "fontWeight": "normal" }
+      },
+      "borderRadius": {
+        "small": 8,
+        "medium": 16,
+        "large": 24,
+        "circle": 999
+      },
+      "spacing": {
+        "xs": 4,
+        "s": 8,
+        "m": 16,
+        "l": 24,
+        "xl": 32
+      }
+    }
+  },
+  "navigation": {
+    "initialRoute": "/splash",
+    "routes": [
+      { "name": "Splash", "path": "/splash" },
+      { "name": "SignIn", "path": "/signin" },
+      { "name": "SignUp", "path": "/signup" },
+      { "name": "OTP", "path": "/otp" },
+      { "name": "PinSetup", "path": "/pin-setup" },
+      { "name": "EnterPin", "path": "/enter-pin" },
+      { "name": "Dashboard", "path": "/dashboard" },
+      { "name": "SendMoney", "path": "/send-money" },
+      { "name": "TopUp", "path": "/top-up" },
+      { "name": "TransactionDetails", "path": "/transaction-details" },
+      { "name": "MoneyTracker", "path": "/money-tracker" },
+      { "name": "Profile", "path": "/profile" },
+      { "name": "PaymentCamera", "path": "/payment-camera" },
+      { "name": "Notifications", "path": "/notifications" }
+    ]
+  },
+  "screens": [
+    {
+      "id": "screen_splash",
+      "name": "Splash",
+      "route": "/splash",
+      "backgroundColor": "#5B4DBC",
+      "layout": {
+        "type": "Column",
+        "alignment": "center",
+        "children": [
+          {
+            "type": "Image",
+            "props": { "src": "assets/logo_white.png", "width": 120, "height": 120 }
+          },
+          {
+            "type": "Text",
+            "props": { "text": "B-Wallet", "style": "h1", "color": "#FFFFFF", "marginTop": 24 }
+          },
+          {
+            "type": "Loader",
+            "props": { "color": "#FFFFFF", "marginTop": 48 }
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen_signin",
+      "name": "Sign In",
+      "route": "/signin",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "alignment": "start",
+        "children": [
+          { "type": "Spacer", "props": { "height": 60 } },
+          { "type": "Text", "props": { "text": "Welcome Back!", "style": "h1" } },
+          { "type": "Text", "props": { "text": "Sign in to continue", "style": "body", "color": "textSecondary", "marginBottom": 40 } },
+          {
+            "type": "Input",
+            "props": { "label": "Email or Phone", "placeholder": "Enter your email", "icon": "mail" }
+          },
+          { "type": "Spacer", "props": { "height": 16 } },
+          {
+            "type": "Input",
+            "props": { "label": "Password", "placeholder": "Enter your password", "isPassword": true, "icon": "lock" }
+          },
+          {
+            "type": "Text",
+            "props": { "text": "Forgot Password?", "alignment": "right", "color": "primary", "marginTop": 12 }
+          },
+          { "type": "Spacer", "props": { "height": 32 } },
+          {
+            "type": "Button",
+            "props": { "text": "Sign In", "variant": "primary", "onTap": "navigate('/dashboard')" }
+          },
+          { "type": "Spacer", "props": { "height": 24 } },
+          {
+            "type": "Row",
+            "alignment": "center",
+            "children": [
+              { "type": "Text", "props": { "text": "Don't have an account? " } },
+              { "type": "Link", "props": { "text": "Sign Up", "color": "primary", "onTap": "navigate('/signup')" } }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen_signup",
+      "name": "Sign Up",
+      "route": "/signup",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "children": [
+          { "type": "NavBar", "props": { "title": "Create Account", "showBack": true } },
+          { "type": "Spacer", "props": { "height": 24 } },
+          { "type": "Input", "props": { "label": "Full Name", "placeholder": "John Doe" } },
+          { "type": "Spacer", "props": { "height": 16 } },
+          { "type": "Input", "props": { "label": "Email", "placeholder": "john@example.com" } },
+          { "type": "Spacer", "props": { "height": 16 } },
+          { "type": "Input", "props": { "label": "Phone Number", "placeholder": "+1 234 567 890" } },
+          { "type": "Spacer", "props": { "height": 16 } },
+          { "type": "Input", "props": { "label": "Password", "isPassword": true } },
+          { "type": "Spacer", "props": { "height": 32 } },
+          { "type": "Button", "props": { "text": "Create Account", "variant": "primary", "onTap": "navigate('/otp')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_otp",
+      "name": "OTP Verification",
+      "route": "/otp",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "children": [
+          { "type": "NavBar", "props": { "showBack": true } },
+          { "type": "Text", "props": { "text": "Verification", "style": "h2", "marginTop": 20 } },
+          { "type": "Text", "props": { "text": "Enter the 4-digit code sent to your phone.", "color": "textSecondary", "marginTop": 8 } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          {
+            "type": "PinInput",
+            "props": { "length": 4, "style": "boxed" }
+          },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Button", "props": { "text": "Verify", "variant": "primary", "onTap": "navigate('/pin-setup')" } },
+          { "type": "Text", "props": { "text": "Resend Code", "alignment": "center", "color": "primary", "marginTop": 24 } }
+        ]
+      }
+    },
+    {
+      "id": "screen_pin_setup",
+      "name": "Security PIN Setup",
+      "route": "/pin-setup",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "alignment": "center",
+        "children": [
+          { "type": "Text", "props": { "text": "Set PIN", "style": "h2" } },
+          { "type": "Text", "props": { "text": "Create a secure PIN for your wallet", "color": "textSecondary", "marginTop": 8 } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "PinInput", "props": { "length": 4, "obscure": true } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Button", "props": { "text": "Save PIN", "variant": "primary", "onTap": "navigate('/dashboard')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_enter_pin",
+      "name": "Enter PIN",
+      "route": "/enter-pin",
+      "backgroundColor": "#5B4DBC",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "alignment": "center",
+        "children": [
+          { "type": "Spacer", "props": { "height": 80 } },
+          { "type": "Text", "props": { "text": "Enter PIN", "style": "h2", "color": "#FFFFFF" } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "PinInput", "props": { "length": 4, "obscure": true, "color": "#FFFFFF" } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Button", "props": { "text": "Unlock", "variant": "secondary", "onTap": "navigate('/dashboard')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_dashboard",
+      "name": "Dashboard",
+      "route": "/dashboard",
+      "backgroundColor": "#F7F9FC",
+      "layout": {
+        "type": "Stack",
+        "children": [
+          {
+            "type": "Column",
+            "children": [
+              {
+                "type": "Container",
+                "props": { "height": 250, "color": "primary", "borderRadius": { "bottomLeft": 32, "bottomRight": 32 } },
+                "children": [
+                   {
+                     "type": "Row",
+                     "padding": 24,
+                     "justify": "space-between",
+                     "children": [
+                       {
+                         "type": "Column",
+                         "children": [
+                           { "type": "Text", "props": { "text": "Hello, User", "color": "#FFFFFF", "opacity": 0.8 } },
+                           { "type": "Text", "props": { "text": "$12,450.00", "style": "h1", "color": "#FFFFFF" } }
+                         ]
+                       },
+                       { "type": "Avatar", "props": { "src": "assets/user.png", "size": 48, "onTap": "navigate('/profile')" } }
+                     ]
+                   }
+                ]
+              },
+              {
+                "type": "Container",
+                "props": { "padding": 24, "marginTop": -60 },
+                "children": [
+                  {
+                    "type": "Card",
+                    "props": { "elevation": 4, "borderRadius": 16, "padding": 16, "color": "#FFFFFF" },
+                    "children": [
+                      {
+                        "type": "Row",
+                        "justify": "space-around",
+                        "children": [
+                          { "type": "ActionButton", "props": { "icon": "send", "label": "Send", "onTap": "navigate('/send-money')" } },
+                          { "type": "ActionButton", "props": { "icon": "plus-circle", "label": "Top Up", "onTap": "navigate('/top-up')" } },
+                          { "type": "ActionButton", "props": { "icon": "camera", "label": "Scan", "onTap": "navigate('/payment-camera')" } },
+                          { "type": "ActionButton", "props": { "icon": "grid", "label": "More", "onTap": "navigate('/money-tracker')" } }
+                        ]
+                      }
+                    ]
+                  },
+                  { "type": "Spacer", "props": { "height": 24 } },
+                  { "type": "Text", "props": { "text": "Discount Items", "style": "h3" } },
+                  {
+                    "type": "ListHorizontal",
+                    "props": { "height": 140, "gap": 16 },
+                    "children": [
+                      { "type": "PromoCard", "props": { "title": "30% OFF", "subtitle": "Nike Store", "color": "#FF6B6B" } },
+                      { "type": "PromoCard", "props": { "title": "Cashback", "subtitle": "Starbucks", "color": "#4ECDC4" } }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen_send_money",
+      "name": "Send Money",
+      "route": "/send-money",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "children": [
+          { "type": "NavBar", "props": { "title": "Send Money", "showBack": true } },
+          { "type": "Spacer", "props": { "height": 24 } },
+          { "type": "Input", "props": { "label": "Recipient", "placeholder": "Name or ID", "icon": "user" } },
+          { "type": "Spacer", "props": { "height": 16 } },
+          { "type": "Input", "props": { "label": "Amount", "placeholder": "$0.00", "inputType": "number", "icon": "dollar-sign" } },
+          { "type": "Spacer", "props": { "height": 32 } },
+          { "type": "Button", "props": { "text": "Send Now", "variant": "primary", "onTap": "navigate('/transaction-details')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_top_up",
+      "name": "Top Up",
+      "route": "/top-up",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "children": [
+          { "type": "NavBar", "props": { "title": "Top Up Wallet", "showBack": true } },
+          { "type": "Spacer", "props": { "height": 24 } },
+          { "type": "Text", "props": { "text": "Select Amount", "style": "h3" } },
+          {
+            "type": "Grid",
+            "props": { "columns": 3, "gap": 12, "marginTop": 16 },
+            "children": [
+              { "type": "Chip", "props": { "text": "$10" } },
+              { "type": "Chip", "props": { "text": "$20" } },
+              { "type": "Chip", "props": { "text": "$50" } },
+              { "type": "Chip", "props": { "text": "$100" } },
+              { "type": "Chip", "props": { "text": "$200" } },
+              { "type": "Chip", "props": { "text": "Custom" } }
+            ]
+          },
+          { "type": "Spacer", "props": { "height": 24 } },
+          { "type": "Text", "props": { "text": "Payment Method", "style": "h3" } },
+          { "type": "ListItem", "props": { "title": "Credit Card", "subtitle": "**** 1234", "icon": "credit-card", "selected": true } },
+          { "type": "ListItem", "props": { "title": "Bank Transfer", "subtitle": "Chase Bank", "icon": "home" } },
+          { "type": "Spacer", "props": { "height": 32 } },
+          { "type": "Button", "props": { "text": "Confirm Top Up", "variant": "primary" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_transaction_details",
+      "name": "Transaction Details",
+      "route": "/transaction-details",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "alignment": "center",
+        "children": [
+          { "type": "NavBar", "props": { "title": "Details", "showBack": true } },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Icon", "props": { "name": "check-circle", "size": 64, "color": "success" } },
+          { "type": "Text", "props": { "text": "Transfer Successful", "style": "h2", "marginTop": 16 } },
+          { "type": "Text", "props": { "text": "- $50.00", "style": "h1", "marginTop": 8 } },
+          { "type": "Spacer", "props": { "height": 32 } },
+          {
+            "type": "Card",
+            "props": { "color": "surface", "padding": 16, "width": "100%" },
+            "children": [
+              { "type": "RowInfo", "props": { "label": "To", "value": "Jane Doe" } },
+              { "type": "RowInfo", "props": { "label": "Date", "value": "Nov 22, 2025" } },
+              { "type": "RowInfo", "props": { "label": "Reference", "value": "#TXN123456" } }
+            ]
+          },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Button", "props": { "text": "Share Receipt", "variant": "outline" } },
+          { "type": "Button", "props": { "text": "Back to Home", "variant": "primary", "marginTop": 16, "onTap": "navigate('/dashboard')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_money_tracker",
+      "name": "Money Tracker",
+      "route": "/money-tracker",
+      "backgroundColor": "#F7F9FC",
+      "layout": {
+        "type": "Column",
+        "children": [
+           { "type": "NavBar", "props": { "title": "Analytics", "showBack": true, "backgroundColor": "#FFFFFF" } },
+           {
+             "type": "Container",
+             "props": { "padding": 24, "backgroundColor": "#FFFFFF" },
+             "children": [
+               { "type": "Chart", "props": { "type": "bar", "height": 200, "data": [30, 50, 20, 60, 40, 70] } }
+             ]
+           },
+           { "type": "Text", "props": { "text": "Recent Expenses", "style": "h3", "padding": 24 } },
+           {
+             "type": "List",
+             "props": { "padding": 24 },
+             "children": [
+               { "type": "TransactionItem", "props": { "title": "Grocery", "date": "Today", "amount": "-$45.00", "icon": "shopping-cart" } },
+               { "type": "TransactionItem", "props": { "title": "Netflix", "date": "Yesterday", "amount": "-$15.00", "icon": "film" } },
+               { "type": "TransactionItem", "props": { "title": "Uber", "date": "Yesterday", "amount": "-$22.50", "icon": "car" } }
+             ]
+           }
+        ]
+      }
+    },
+    {
+      "id": "screen_profile",
+      "name": "Profile",
+      "route": "/profile",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "padding": 24,
+        "alignment": "center",
+        "children": [
+          { "type": "NavBar", "props": { "title": "My Profile", "showBack": true } },
+          { "type": "Avatar", "props": { "src": "assets/user.png", "size": 100, "marginTop": 24 } },
+          { "type": "Text", "props": { "text": "User Name", "style": "h2", "marginTop": 16 } },
+          { "type": "Text", "props": { "text": "@username", "color": "textSecondary" } },
+          { "type": "Spacer", "props": { "height": 32 } },
+          {
+             "type": "Column",
+             "props": { "width": "100%" },
+             "children": [
+               { "type": "MenuItem", "props": { "icon": "user", "label": "Personal Information", "arrow": true } },
+               { "type": "MenuItem", "props": { "icon": "shield", "label": "Security", "arrow": true } },
+               { "type": "MenuItem", "props": { "icon": "credit-card", "label": "Payment Methods", "arrow": true } },
+               { "type": "MenuItem", "props": { "icon": "bell", "label": "Notifications", "arrow": true } },
+               { "type": "MenuItem", "props": { "icon": "help-circle", "label": "Help & Support", "arrow": true } }
+             ]
+          },
+          { "type": "Spacer", "props": { "height": 40 } },
+          { "type": "Button", "props": { "text": "Log Out", "variant": "outline", "color": "error", "onTap": "navigate('/signin')" } }
+        ]
+      }
+    },
+    {
+      "id": "screen_payment_camera",
+      "name": "Payment Camera Screen",
+      "route": "/payment-camera",
+      "backgroundColor": "#000000",
+      "layout": {
+        "type": "Stack",
+        "children": [
+          { "type": "CameraPreview", "props": { "isActive": true } },
+          {
+            "type": "Column",
+            "padding": 24,
+            "justify": "space-between",
+            "height": "100%",
+            "children": [
+              { "type": "NavBar", "props": { "title": "Scan QR Code", "showBack": true, "color": "#FFFFFF" } },
+              { "type": "ScannerOverlay", "props": { "size": 250, "borderColor": "#FFFFFF" } },
+              { "type": "Text", "props": { "text": "Align code within frame to pay", "color": "#FFFFFF", "alignment": "center" } }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen_notifications",
+      "name": "Notifications",
+      "route": "/notifications",
+      "backgroundColor": "#FFFFFF",
+      "layout": {
+        "type": "Column",
+        "children": [
+          { "type": "NavBar", "props": { "title": "Notifications", "showBack": true } },
+          {
+            "type": "List",
+            "props": { "padding": 16 },
+            "children": [
+              { "type": "NotificationItem", "props": { "title": "Payment Received", "body": "You received $50 from Jane.", "time": "2m ago", "read": false } },
+              { "type": "NotificationItem", "props": { "title": "Security Alert", "body": "New login from device iPhone 14.", "time": "1h ago", "read": true } },
+              { "type": "NotificationItem", "props": { "title": "Promo", "body": "Get 20% cashback on Starbucks!", "time": "1d ago", "read": true } }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
