@@ -1,0 +1,16 @@
+{
+  "app": {
+    "id": "b-wallet-demo",
+    "name": "B-Wallet"
+  },
+  "pages": [
+    {
+      "id": "splash",
+      "name": "Splash",
+      "layout": {
+        "type": "text",
+        "value": "Hello B-Wallet!"
+      }
+    }
+  ]
+}
