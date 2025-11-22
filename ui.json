@@ -1,1 +1,700 @@
-{}
+{
+"meta": {
+"appId": "bwallet",
+"appName": "B Wallet",
+"generatedBy": "GPT",
+"version": "1.0",
+"format": "ui-json-v1"
+},
+"theme": {
+"palette": {
+"gradientStart": "#7B2FF7",
+"gradientEnd": "#FF6A88",
+"primary": "#5C3CE5",
+"accent": "#FF7A59",
+"bg": "#0F1113",
+"card": "#121315",
+"muted": "#98A0A8",
+"white": "#FFFFFF",
+"surface": "#111214",
+"success": "#22C55E",
+"danger": "#FF4D4F"
+},
+"typography": {
+"fontFamily": "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
+"headlineLarge": {
+"fontFamily": "Inter",
+"fontSize": 28,
+"fontWeight": 700,
+"lineHeight": 1.15,
+"colorToken": "white"
+},
+"headlineMedium": {
+"fontSize": 22,
+"fontWeight": 600
+},
+"body": {
+"fontSize": 15,
+"fontWeight": 400,
+"colorToken": "muted"
+},
+"button": {
+"fontSize": 16,
+"fontWeight": 600
+}
+},
+"radius": {
+"card": 20,
+"button": 28,
+"small": 8
+},
+"shadows": {
+"card": {
+"x": 0,
+"y": 8,
+"blur": 30,
+"color": "rgba(0,0,0,0.55)"
+},
+"elevated": {
+"x": 0,
+"y": 6,
+"blur": 18,
+"color": "rgba(0,0,0,0.45)"
+}
+}
+},
+"routing": {
+"initialRoute": "/splash",
+"routes": [
+{ "name": "Splash", "path": "/splash", "pageId": "SplashPage" },
+{ "name": "SignIn", "path": "/signin", "pageId": "SignInPage" },
+{ "name": "SignUp", "path": "/signup", "pageId": "SignUpPage" },
+{ "name": "OTP", "path": "/otp", "pageId": "OTPPage" },
+{ "name": "Home", "path": "/home", "pageId": "HomePage" },
+{ "name": "TopUp", "path": "/topup", "pageId": "TopUpPage" },
+{ "name": "Send", "path": "/send", "pageId": "SendPage" },
+{ "name": "Request", "path": "/request", "pageId": "RequestPage" },
+{ "name": "Pin", "path": "/pin", "pageId": "PinPage" },
+{ "name": "Success", "path": "/success", "pageId": "SuccessPage" },
+{ "name": "MoneyTracker", "path": "/money-tracker", "pageId": "MoneyTrackerPage" },
+{ "name": "Profile", "path": "/profile", "pageId": "ProfilePage" },
+{ "name": "PaymentCamera", "path": "/camera", "pageId": "PaymentCameraPage" },
+{ "name": "Notifications", "path": "/notifications", "pageId": "NotificationsPage" }
+]
+},
+"pages": [
+{
+"id": "SplashPage",
+"name": "Splash",
+"meta": { "safeArea": true },
+"scaffold": {
+"background": {
+"type": "linearGradient",
+"start": "gradientStart",
+"end": "gradientEnd",
+"angle": 45
+},
+"body": {
+"layout": "column",
+"align": "center",
+"justify": "center",
+"children": [
+{
+"type": "image",
+"src": "/mnt/data/files.png",
+"name": "heroReference",
+"width": "360",
+"height": "360",
+"fit": "cover",
+"opacity": 0.95,
+"style": {
+"borderRadius": 24,
+"shadow": "card"
+}
+},
+{
+"type": "spacer",
+"height": 28
+},
+{
+"type": "text",
+"value": "BWallet",
+"styleToken": "headlineLarge",
+"style": { "color": "white" }
+},
+{
+"type": "text",
+"value": "Your best choice for e-wallet",
+"style": "body",
+"styleOverrides": { "color": "muted", "marginTop": 8 }
+}
+]
+},
+"bottomBar": {
+"type": "none"
+}
+}
+},
+{
+"id": "SignInPage",
+"name": "SignIn",
+"scaffold": {
+"background": { "colorToken": "surface" },
+"appBar": {
+"visible": false
+},
+"body": {
+"layout": "column",
+"padding": { "horizontal": 20, "vertical": 22 },
+"children": [
+{
+"type": "card",
+"elevation": "card",
+"radius": "card",
+"padding": { "all": 18 },
+"background": {
+"type": "solid",
+"colorToken": "card"
+},
+"children": [
+{ "type": "text", "value": "Sign In", "styleToken": "headlineMedium", "styleOverrides": { "color": "white" } },
+{ "type": "spacer", "height": 10 },
+{
+"type": "textfield",
+"id": "signin_email",
+"placeholder": "Email or phone",
+"keyboard": "email",
+"style": {
+"background": "#0B0C0D",
+"borderRadius": 12,
+"padding": 14,
+"textColor": "white"
+}
+},
+{ "type": "spacer", "height": 12 },
+{
+"type": "textfield",
+"id": "signin_password",
+"placeholder": "Password",
+"obscure": true,
+"style": {
+"background": "#0B0C0D",
+"borderRadius": 12,
+"padding": 14,
+"textColor": "white"
+}
+},
+{ "type": "spacer", "height": 18 },
+{
+"type": "button",
+"id": "signin_btn",
+"label": "Sign In",
+"style": {
+"width": "100%",
+"height": 52,
+"background": {
+"type": "linearGradient",
+"start": "primary",
+"end": "accent"
+},
+"radius": "button",
+"textStyle": "button"
+},
+"action": {
+"type": "authLogin",
+"provider": "email",
+"emailField": "signin_email",
+"passwordField": "signin_password",
+"navigateOnSuccess": "/home",
+"navigateOnFailure": null
+}
+},
+{ "type": "spacer", "height": 10 },
+{
+"type": "row",
+"justify": "center",
+"children": [
+{ "type": "text", "value": "Don't have an account? ", "style": "body" },
+{ "type": "link", "label": "Sign Up", "target": "/signup", "style": { "colorToken": "accent", "fontWeight": 600 } }
+]
+}
+]
+}
+]
+}
+}
+},
+{
+"id": "SignUpPage",
+"name": "SignUp",
+"scaffold": {
+"background": { "colorToken": "surface" },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 20, "vertical": 20 },
+"children": [
+{
+"type": "card",
+"radius": "card",
+"padding": { "all": 16 },
+"children": [
+{ "type": "text", "value": "Create Account", "styleToken": "headlineMedium", "styleOverrides": { "color": "white" } },
+{ "type": "spacer", "height": 12 },
+{
+"type": "textfield",
+"id": "signup_email",
+"placeholder": "Email",
+"style": { "background": "#0B0C0D", "borderRadius": 12, "padding": 14 }
+},
+{ "type": "spacer", "height": 10 },
+{
+"type": "textfield",
+"id": "signup_password",
+"placeholder": "Password",
+"obscure": true,
+"style": { "background": "#0B0C0D", "borderRadius": 12, "padding": 14 }
+},
+{ "type": "spacer", "height": 10 },
+{
+"type": "textfield",
+"id": "signup_confirm",
+"placeholder": "Confirm Password",
+"obscure": true,
+"style": { "background": "#0B0C0D", "borderRadius": 12, "padding": 14 }
+},
+{ "type": "spacer", "height": 16 },
+{
+"type": "button",
+"id": "signup_btn",
+"label": "Create Account",
+"style": {
+"height": 52,
+"background": { "type": "linearGradient", "start": "primary", "end": "accent" },
+"radius": "button"
+},
+"action": {
+"type": "authCreate",
+"provider": "email",
+"emailField": "signup_email",
+"passwordField": "signup_password",
+"confirmPasswordField": "signup_confirm",
+"createUserDocument": false,
+"navigateOnSuccess": "/home"
+}
+}
+]
+}
+]
+}
+}
+},
+{
+"id": "OTPPage",
+"name": "OTP",
+"scaffold": {
+"background": { "colorToken": "gradientStart" },
+"body": {
+"layout": "column",
+"align": "center",
+"padding": { "vertical": 30, "horizontal": 20 },
+"children": [
+{ "type": "text", "value": "Enter the OTP Code", "styleToken": "headlineMedium", "styleOverrides": { "color": "white" } },
+{ "type": "spacer", "height": 14 },
+{
+"type": "otp",
+"length": 4,
+"style": {
+"boxSize": 56,
+"boxRadius": 12,
+"boxBackground": "#0F1620",
+"boxTextColor": "white",
+"spacing": 12
+}
+},
+{ "type": "spacer", "height": 18 },
+{
+"type": "button",
+"label": "Verify",
+"style": { "height": 50, "radius": 24, "background": "primary" },
+"action": { "type": "navigate", "target": "/home" }
+}
+]
+}
+}
+},
+{
+"id": "HomePage",
+"name": "Home",
+"scaffold": {
+"background": {
+"type": "solid",
+"colorToken": "surface"
+},
+"appBar": {
+"visible": false
+},
+"body": {
+"layout": "column",
+"padding": { "horizontal": 14, "vertical": 12 },
+"children": [
+{
+"type": "row",
+"justify": "space-between",
+"align": "center",
+"children": [
+{
+"type": "column",
+"children": [
+{ "type": "text", "value": "Saldo Balance", "style": { "fontSize": 14, "color": "muted" } },
+{ "type": "text", "value": "$5,000.00", "style": { "fontSize": 22, "fontWeight": 700, "color": "white" } }
+]
+},
+{
+"type": "avatar",
+"size": 44,
+"src": null,
+"placeholder": { "text": "HS", "background": "primary" }
+}
+]
+},
+{ "type": "spacer", "height": 18 },
+{
+"type": "card",
+"radius": 20,
+"padding": { "all": 16 },
+"children": [
+{
+"type": "row",
+"justify": "space-around",
+"children": [
+{
+"type": "actionIcon",
+"label": "Top Up",
+"icon": "plus",
+"action": { "type": "navigate", "target": "/topup" }
+},
+{ "type": "actionIcon", "label": "Send", "icon": "send", "action": { "type": "navigate", "target": "/send" } },
+{ "type": "actionIcon", "label": "Request", "icon": "request", "action": { "type": "navigate", "target": "/request" } }
+]
+}
+]
+},
+{ "type": "spacer", "height": 16 },
+{
+"type": "text",
+"value": "Discount Items",
+"style": { "fontWeight": 600, "color": "white" }
+},
+{ "type": "spacer", "height": 10 },
+{
+"type": "listHorizontal",
+"itemWidth": 220,
+"items": [
+{
+"type": "card",
+"radius": 14,
+"padding": { "all": 12 },
+"children": [
+{ "type": "image", "src": "/mnt/data/files.png", "height": 100, "fit": "cover", "radius": 10 },
+{ "type": "spacer", "height": 8 },
+{ "type": "text", "value": "Premium Headphones", "style": { "fontWeight": 600, "color": "white" } },
+{ "type": "text", "value": "Get coupons now", "style": "body" }
+],
+"style": { "background": "card" }
+},
+{
+"type": "card",
+"radius": 14,
+"padding": { "all": 12 },
+"children": [
+{ "type": "image", "src": "/mnt/data/files.png", "height": 100, "fit": "cover", "radius": 10 },
+{ "type": "spacer", "height": 8 },
+{ "type": "text", "value": "Doorprice Handphone", "style": { "fontWeight": 600, "color": "white" } },
+{ "type": "text", "value": "Limited offer", "style": "body" }
+],
+"style": { "background": "card" }
+}
+]
+}
+]
+},
+"bottomNav": {
+"visible": true,
+"items": [
+{ "id": "home", "label": "Home", "icon": "home", "target": "/home" },
+{ "id": "pay", "label": "Pay", "icon": "plus-circle", "target": "/topup" },
+{ "id": "messages", "label": "Message", "icon": "message", "target": "/notifications" },
+{ "id": "profile", "label": "Profile", "icon": "user", "target": "/profile" }
+],
+"style": { "background": "card", "elevation": "elevated", "radiusTop": 18 }
+}
+}
+},
+{
+"id": "TopUpPage",
+"name": "TopUp",
+"scaffold": {
+"background": { "colorToken": "surface" },
+"appBar": { "title": "Top Up", "transparent": false },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 18, "vertical": 16 },
+"children": [
+{
+"type": "card",
+"radius": 16,
+"padding": { "all": 14 },
+"children": [
+{ "type": "text", "value": "$0.00", "style": { "fontSize": 26, "fontWeight": 700 } },
+{ "type": "spacer", "height": 12 },
+{
+"type": "numericPad",
+"id": "topup_pad",
+"style": { "buttonSize": 72, "radius": 12, "background": "#0E1113" }
+},
+{ "type": "spacer", "height": 14 },
+{
+"type": "dropdown",
+"id": "topup_method",
+"label": "Top up method",
+"options": [
+{ "label": "MasterCard **** 5246", "value": "card_1" }
+]
+},
+{ "type": "spacer", "height": 12 },
+{
+"type": "button",
+"label": "Top Up",
+"style": { "background": "primary", "height": 56, "radius": "button" },
+"action": { "type": "navigate", "target": "/success" }
+}
+]
+}
+]
+}
+}
+},
+{
+"id": "SendPage",
+"name": "Send",
+"scaffold": {
+"appBar": { "title": "Send Money" },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 16, "vertical": 14 },
+"children": [
+{
+"type": "card",
+"radius": 16,
+"padding": { "all": 12 },
+"children": [
+{ "type": "text", "value": "Amount to send", "style": { "color": "muted" } },
+{ "type": "spacer", "height": 8 },
+{ "type": "textfield", "id": "send_amount", "placeholder": "$0.00", "style": { "fontSize": 26 } },
+{ "type": "spacer", "height": 12 },
+{ "type": "text", "value": "Select category", "style": "body" },
+{ "type": "spacer", "height": 10 },
+{
+"type": "list",
+"items": [
+{ "title": "Brenda Landro", "subtitle": "Payee • 0892xxxx", "avatar": null },
+{ "title": "Daren Johnson", "subtitle": "Payee • 0891xxxx", "avatar": null }
+]
+},
+{ "type": "spacer", "height": 12 },
+{
+"type": "button",
+"label": "Continue",
+"style": { "background": "accent", "height": 52, "radius": 24 },
+"action": { "type": "navigate", "target": "/pin" }
+}
+]
+}
+]
+}
+}
+},
+{
+"id": "RequestPage",
+"name": "Request",
+"scaffold": {
+"appBar": { "title": "Request" },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 16, "vertical": 14 },
+"children": [
+{ "type": "text", "value": "Enter the number of request", "style": "body" },
+{ "type": "spacer", "height": 8 },
+{ "type": "numericPad", "id": "request_pad", "style": { "buttonSize": 64 } },
+{ "type": "spacer", "height": 12 },
+{ "type": "button", "label": "Continue", "style": { "background": "primary" }, "action": { "type": "navigate", "target": "/success" } }
+]
+}
+}
+},
+{
+"id": "PinPage",
+"name": "Pin",
+"scaffold": {
+"background": { "type": "linearGradient", "start": "gradientStart", "end": "gradientEnd", "angle": 160 },
+"body": {
+"layout": "column",
+"align": "center",
+"padding": { "vertical": 40 },
+"children": [
+{ "type": "text", "value": "Enter the Security Pin", "styleToken": "headlineMedium", "styleOverrides": { "color": "white" } },
+{ "type": "spacer", "height": 18 },
+{
+"type": "pin",
+"length": 4,
+"style": {
+"boxSize": 68,
+"radius": 12,
+"background": "#0E1114",
+"textColor": "white",
+"spacing": 12
+}
+},
+{ "type": "spacer", "height": 18 },
+{ "type": "button", "label": "Ok", "style": { "background": "accent", "radius": "button" }, "action": { "type": "navigate", "target": "/success" } }
+]
+}
+}
+},
+{
+"id": "SuccessPage",
+"name": "Success",
+"scaffold": {
+"background": { "colorToken": "surface" },
+"body": {
+"layout": "column",
+"align": "center",
+"padding": { "vertical": 40 },
+"children": [
+{ "type": "icon", "name": "check-circle", "size": 86, "colorToken": "success" },
+{ "type": "spacer", "height": 16 },
+{ "type": "text", "value": "Top Up Success", "style": { "fontSize": 20, "fontWeight": 700 } },
+{ "type": "spacer", "height": 10 },
+{ "type": "text", "value": "Your balance has been updated.", "style": "body" },
+{ "type": "spacer", "height": 24 },
+{ "type": "button", "label": "Done", "style": { "background": "primary" }, "action": { "type": "navigate", "target": "/home" } }
+]
+}
+}
+},
+{
+"id": "MoneyTrackerPage",
+"name": "MoneyTracker",
+"scaffold": {
+"appBar": { "title": "Money Tracker" },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 14, "vertical": 14 },
+"children": [
+{
+"type": "card",
+"radius": 16,
+"padding": { "all": 12 },
+"children": [
+{ "type": "text", "value": "Current Balance", "style": { "color": "muted" } },
+{ "type": "spacer", "height": 8 },
+{ "type": "text", "value": "$500,000.00", "style": { "fontSize": 22, "fontWeight": 700 } }
+]
+},
+{ "type": "spacer", "height": 12 },
+{
+"type": "chart",
+"chartType": "bar",
+"data": {
+"labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+"series": [[12000, 5000, 8000, 20000, 15000, 9000, 16000]]
+}
+}
+]
+}
+}
+},
+{
+"id": "ProfilePage",
+"name": "Profile",
+"scaffold": {
+"appBar": { "title": "Profile" },
+"body": {
+"layout": "column",
+"padding": { "all": 14 },
+"children": [
+{ "type": "profileCard", "name": "Samantha Zalora", "subtitle": "Click here to edit profile", "balance": "$5,000.00" },
+{ "type": "spacer", "height": 12 },
+{
+"type": "list",
+"items": [
+{ "title": "Balance", "subtitle": "$5,000.00" },
+{ "title": "Saved Card", "subtitle": "2 cards" },
+{ "title": "Security Pin", "subtitle": "Set" },
+{ "title": "Settings", "subtitle": "" }
+]
+}
+]
+}
+}
+},
+{
+"id": "PaymentCameraPage",
+"name": "PaymentCamera",
+"scaffold": {
+"appBar": { "title": "Scan Barcode" },
+"body": {
+"layout": "column",
+"children": [
+{ "type": "cameraView", "hint": "Align the barcode inside the frame" },
+{
+"type": "card",
+"radius": 12,
+"padding": { "all": 12 },
+"children": [
+{ "type": "text", "value": "Choose Payment Method", "style": { "fontWeight": 600 } },
+{ "type": "spacer", "height": 8 },
+{ "type": "list", "items": [{ "title": "Scan Barcode", "subtitle": "" }, { "title": "My Barcode", "subtitle": "" }] }
+]
+}
+]
+}
+}
+},
+{
+"id": "NotificationsPage",
+"name": "Notifications",
+"scaffold": {
+"appBar": { "title": "Notifications" },
+"body": {
+"layout": "column",
+"padding": { "horizontal": 12, "vertical": 12 },
+"children": [
+{
+"type": "list",
+"items": [
+{ "title": "Promo 40% Discount for special day", "subtitle": "6 hours ago" },
+{ "title": "System maintenance scheduled", "subtitle": "2 days ago" },
+{ "title": "New feature released", "subtitle": "1 week ago" }
+]
+}
+]
+}
+}
+}
+],
+"assets": {
+"images": [
+{ "id": "reference_collage", "path": "/mnt/data/files.png", "description": "Design reference collage" }
+]
+},
+"notes": {
+"instructions": [
+"This JSON defines UI-only pages and routing. It contains no backend config, no firebase, and no data bindings to remote services.",
+"Keep this single file named ui.json and place it into the repository root. Teta / DataAI should read and import this UI JSON to build screens.",
+"If your platform expects a slightly different schema, adapt keys: pages -> screens, scaffold -> frame, etc. But this file contains the complete UI blueprint: theme tokens, routes, pages, and components only.",
+"All actions here are UI actions and navigation only; authentication action blocks are placeholders and will not call real backend services."
+]
+}
+}
+
